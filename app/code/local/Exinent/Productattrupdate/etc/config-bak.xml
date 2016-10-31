@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Exinent_Productattrupdate>
+            <version>0.1.0</version>
+        </Exinent_Productattrupdate>
+    </modules>
+    <global>
+        <helpers>
+            <productattrupdate>
+                <class>Exinent_Productattrupdate_Helper</class>
+            </productattrupdate>
+        </helpers>
+        <models>
+            <productattrupdate>
+                <class>Exinent_Productattrupdate_Model</class>
+                <resourceModel>productattrupdate_mysql4</resourceModel>
+            </productattrupdate>
+        </models>
+        <events>
+            <catalog_product_save_before>
+                <observers>
+                    <catalog_product_save_before_handler>
+                        <type>model</type> 
+                        <class>productattrupdate/observer</class> 
+                        <method>createupdatesortattributes</method>
+                        <args></args> 
+                    </catalog_product_save_before_handler>
+                </observers>
+            </catalog_product_save_before>
+        </events>
+    </global>
+</config> 

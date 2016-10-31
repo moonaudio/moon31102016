@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * RocketWeb
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ *
+ * @category   RocketWeb
+ * @package    RocketWeb_GoogleBaseFeedGenerator
+ * @copyright  Copyright (c) 2012 RocketWeb (http://rocketweb.com)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @author     RocketWeb
+ */
+-->
+<config>
+    <modules>
+        <RocketWeb_GoogleBaseFeedGenerator>
+            <version>0.5.7</version>
+            <extension_version>2.0.5</extension_version>
+        </RocketWeb_GoogleBaseFeedGenerator>
+    </modules>
+
+    <global>
+        <models>
+            <googlebasefeedgenerator>
+                <class>RocketWeb_GoogleBaseFeedGenerator_Model</class>
+                <resourceModel>googlebasefeedgenerator_mysql4</resourceModel>
+            </googlebasefeedgenerator>
+
+            <googlebasefeedgenerator_mysql4>
+                <class>RocketWeb_GoogleBaseFeedGenerator_Model_Mysql4</class>
+                <entities>
+                    <shipping>
+                        <table>rw_gfeed_shipping</table>
+                    </shipping>
+                    <process>
+                        <table>rw_gfeed_process</table>
+                    </process>
+                    <feed>
+                        <table>rw_gfeed_feed</table>
+                    </feed>
+                    <feed_config>
+                        <table>rw_gfeed_feed_config</table>
+                    </feed_config>
+                    <feed_store>
+                        <table>rw_gfeed_feed_store</table>
+                    </feed_store>
+                    <feed_schedule>
+                        <table>rw_gfeed_feed_schedule</table>
+                    </feed_schedule>
+                    <queue>
+                        <table>rw_gfeed_queue</table>
+                    </queue>
+                    <feed_ftp>
+                        <table>rw_gfeed_feed_ftp</table>
+                    </feed_ftp>
+                </entities>
+            </googlebasefeedgenerator_mysql4>
+        </models>
+
+        <resources>
+            <googlebasefeedgenerator_setup>
+                <setup>
+                    <module>RocketWeb_GoogleBaseFeedGenerator</module>
+                    <class>RocketWeb_GoogleBaseFeedGenerator_Model_Resource_Eav_Mysql4_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </googlebasefeedgenerator_setup>
+            <googlebasefeedgenerator_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </googlebasefeedgenerator_write>
+            <googlebasefeedgenerator_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </googlebasefeedgenerator_read>
+        </resources>
+
+        <blocks>
+            <googlebasefeedgenerator>
+                <class>RocketWeb_GoogleBaseFeedGenerator_Block</class>
+            </googlebasefeedgenerator>
+        </blocks>
+
+        <helpers>
+            <googlebasefeedgenerator>
+                <class>RocketWeb_GoogleBaseFeedGenerator_Helper</class>
+            </googlebasefeedgenerator>
+        </helpers>
+
+        <!--<events>
+            <controller_front_init_before>
+                <observers>
+                    <amasty_amseotoolkit_model_observer>
+                        <type>disabled</type>
+                    </amasty_amseotoolkit_model_observer>
+                </observers>
+            </controller_front_init_before>
+        </events>-->
+        <events>
+            <admin_system_config_changed_section_carriers>
+                <observers>
+                    <googlebasefeedgenerator_system_config_carriers_after_save>
+                        <type>singleton</type>
+                        <class>googlebasefeedgenerator/observer</class>
+                        <method>systemConfigCarriersAfterSave</method>
+                    </googlebasefeedgenerator_system_config_carriers_after_save>
+                </observers>
+            </admin_system_config_changed_section_carriers>
+            <controller_action_postdispatch_adminhtml_system_currency_saveRates>
+                <observers>
+                    <googlebasefeedgenerator_currency_save_rates_action_after>
+                        <type>singleton</type>
+                        <class>googlebasefeedgenerator/observer</class>
+                        <method>adminCurrencySaveRatesActionAfter</method>
+                    </googlebasefeedgenerator_currency_save_rates_action_after>
+                </observers>
+            </controller_action_postdispatch_adminhtml_system_currency_saveRates>
+        </events>
+    </global>
+
+    <default>
+        <!-- General configs -->
+        <general>
+            <microdata_turned_on>0</microdata_turned_on>
+            <license_key></license_key>
+            <batch_mode>0</batch_mode>
+            <batch_limit>5000</batch_limit>
+        </general>
+        <debug>
+            <sku></sku>
+        </debug>
+
+        <!-- Feed default data -->
+        <feed>
+            <log_filename><![CDATA[feed_%s.log]]></log_filename>
+            <feed_filename><![CDATA[feed_%s.txt]]></feed_filename>
+            <test_filename><![CDATA[test_%s.txt]]></test_filename>
+            <lock_filename><![CDATA[feed_%s.lock]]></lock_filename>
+            <batch_lock_filename><![CDATA[batch_%s.lock]]></batch_lock_filename>
+            <category_depth>8</category_depth>
+            <auto_skip>1</auto_skip>
+            <exclude_attributes><![CDATA[gallery,image,small_image,price,special_price,special_from_date,special_to_date,price_view,url_key]]></exclude_attributes>
+            <type>generic</type>
+        </feed>
+    </default>
+
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <rocketweb_googlebasefeedgenerator before="Mage_Adminhtml">RocketWeb_GoogleBaseFeedGenerator_Adminhtml</rocketweb_googlebasefeedgenerator>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+
+    <frontend>
+        <layout>
+            <updates>
+                <rocketweb_googlebasefeedgenerator>
+                    <file>rocketweb_googlebasefeedgenerator.xml</file>
+                </rocketweb_googlebasefeedgenerator>
+            </updates>
+        </layout>
+    </frontend>
+
+    <adminhtml>
+        <layout>
+            <updates>
+                <rocketweb_googlebasefeedgenerator_admin>
+                    <file>rocketweb_googlebasefeedgenerator.xml</file>
+                </rocketweb_googlebasefeedgenerator_admin>
+            </updates>
+        </layout>
+    </adminhtml>
+
+    <crontab>
+        <jobs>
+            <rw_feeds_schedule>
+                <schedule><cron_expr>* * * * *</cron_expr></schedule>
+                <run><model>googlebasefeedgenerator/observer::processSchedule</model></run>
+            </rw_feeds_schedule>
+            <rw_feeds_queue>
+                <schedule><cron_expr>* * * * *</cron_expr></schedule>
+                <run><model>googlebasefeedgenerator/observer::processQueue</model></run>
+            </rw_feeds_queue>
+        </jobs>
+    </crontab>
+    <phpunit>
+        <suite>
+            <modules>
+                <RocketWeb_GoogleBaseFeedGenerator />
+            </modules>
+        </suite>
+    </phpunit>
+</config>

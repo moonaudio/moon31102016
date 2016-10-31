@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Exinent_Freefedexshipping>
+            <version>0.1</version>
+        </Exinent_Freefedexshipping>
+    </modules>
+    <global>
+       <models>
+	   <exinent_freefedexshipping>
+	   <class>Exinent_Freefedexshipping_Model</class>
+	   </exinent_freefedexshipping>
+          <usa>
+            <rewrite>
+       <shipping_carrier_fedex>Exinent_Freefedexshipping_Model_Usa_Shipping_Carrier_Fedex</shipping_carrier_fedex>
+            </rewrite>
+          </usa>
+       </models>
+    </global>
+</config> 

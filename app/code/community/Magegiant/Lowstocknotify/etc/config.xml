@@ -1,0 +1,171 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magegiant
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the magegiant.com license that is
+ * available through the world-wide-web at this URL:
+ * http://magegiant.com/license-agreement/
+ * 
+ * DISCLAIMER
+ * 
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ * 
+ * @category    Magegiant
+ * @package     Magegiant_Lowstocknotify
+ * @copyright   Copyright (c) 2014 Magegiant (http://magegiant.com/)
+ * @license     http://magegiant.com/license-agreement/
+ */
+-->
+<config>
+    <modules>
+        <Magegiant_Lowstocknotify>
+            <version>0.1.0</version>
+        </Magegiant_Lowstocknotify>
+    </modules>
+    <frontend>
+        <routers>
+            <lowstocknotify>
+                <use>standard</use>
+                <args>
+                    <module>Magegiant_Lowstocknotify</module>
+                    <frontName>lowstocknotify</frontName>
+                </args>
+            </lowstocknotify>
+        </routers>
+
+        <layout>
+            <updates>
+                <lowstocknotify>
+                    <file>magegiant/lowstocknotify.xml</file>
+                </lowstocknotify>
+            </updates>
+        </layout>
+
+
+        <translate>
+            <modules>
+                <Magegiant_Lowstocknotify>
+                    <files>
+                        <default>Magegiant_Lowstocknotify.csv</default>
+                    </files>
+                </Magegiant_Lowstocknotify>
+            </modules>
+        </translate>
+
+    </frontend>
+    <adminhtml>
+        <translate>
+            <modules>
+                <Magegiant_Lowstocknotify>
+                    <files>
+                        <default>Magegiant_Lowstocknotify.csv</default>
+                    </files>
+                </Magegiant_Lowstocknotify>
+            </modules>
+        </translate>
+    </adminhtml>
+    <global>
+        <models>
+            <lowstocknotify>
+                <class>Magegiant_Lowstocknotify_Model</class>
+            </lowstocknotify>
+        </models>
+        <resources>
+            <giant_lowstocknotify_setup>
+                <setup>
+                    <module>Magegiant_Lowstocknotify</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </giant_lowstocknotify_setup>
+            <lowstocknotify_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </lowstocknotify_write>
+            <lowstocknotify_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </lowstocknotify_read>
+        </resources>
+        <blocks>
+            <lowstocknotify>
+                <class>Magegiant_Lowstocknotify_Block</class>
+            </lowstocknotify>
+        </blocks>
+        <helpers>
+            <lowstocknotify>
+                <class>Magegiant_Lowstocknotify_Helper</class>
+            </lowstocknotify>
+        </helpers>
+
+        <template>
+            <email>
+                <lowstocknotify_notify_template translate="label" module="lowstocknotify">
+                    <label>Giant Low stock report</label>
+                    <file>giant_low_stock_notify.html</file>
+                    <type>html</type>
+                </lowstocknotify_notify_template>
+            </email>
+        </template>
+
+        <events>
+            <sales_order_place_after>
+                <observers>
+                    <lowstocknotify_sales_order_place_after>
+                        <type>singleton</type>
+                        <class>lowstocknotify/observer</class>
+                        <method>afterPlaceOrder</method>
+                    </lowstocknotify_sales_order_place_after>
+                </observers>
+            </sales_order_place_after>
+
+            <catalog_product_prepare_save>
+                <observers>
+                    <lowstocknotify_catalog_product_prepare_save>
+                        <type>singleton</type>
+                        <class>lowstocknotify/observer</class>
+                        <method>afterProductSave</method>
+                    </lowstocknotify_catalog_product_prepare_save>
+                </observers>
+            </catalog_product_prepare_save>
+
+
+        </events>
+
+
+    </global>
+
+    <default>
+        <lowstocknotify>
+            <general>
+                <enable>1</enable>
+            </general>
+
+            <notify>
+                <template>lowstocknotify_notify_template</template>
+                <from>general</from>
+                <trigger>after_place_order</trigger>
+            </notify>
+        </lowstocknotify>
+    </default>
+
+    <crontab>
+        <jobs>
+            <lowstocknotify_run>
+                <schedule>
+                    <cron_expr>0 0 * * *</cron_expr>
+                </schedule>
+                <run>
+                    <model>lowstocknotify/observer::cronJob</model>
+                </run>
+            </lowstocknotify_run>
+        </jobs>
+    </crontab>
+</config>

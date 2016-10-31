@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Signifyd_Connect>
+            <active>true</active>
+            <codePool>community</codePool>
+        </Signifyd_Connect>
+    </modules>
+</config>

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <AtlanticBT_Contacts>
+            <active>true</active>
+            <codePool>local</codePool>
+        </AtlanticBT_Contacts>
+    </modules>
+</config>

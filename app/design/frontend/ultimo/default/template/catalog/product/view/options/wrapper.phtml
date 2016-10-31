@@ -1,0 +1,145 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<div class="product-options" id="product-options-wrapper">
+    <?php echo $this->getChildHtml('', true, true);?>
+    <?php if ($this->hasRequiredOptions()):?>
+        <p class="required"><?php echo $this->__('* Required Fields') ?></p>
+    <?php endif;?>
+</div>
+<script type="text/javascript">decorateGeneric($$('#product-options-wrapper dl'), ['last']);</script>
+<script type="text/javascript">
+	var $j = jQuery.noConflict();
+
+	$j.expr[':'].Contains = function(a, i, m) {
+	  return jQuery(a).text().toUpperCase().indexOf(m[3].toUpperCase()) >= 0;
+	};
+
+
+	$j(document).ready(function(){
+		var $ = jQuery;
+
+		// NEW selector
+		jQuery.expr[':'].Contains = function(a, i, m) {
+		  return jQuery(a).text().toUpperCase()
+			  .indexOf(m[3].toUpperCase()) >= 0;
+		};
+
+		// OVERWRITES old selecor
+		jQuery.expr[':'].contains = function(a, i, m) {
+		  return jQuery(a).text().toUpperCase()
+			  .indexOf(m[3].toUpperCase()) >= 0;
+		};
+
+		// Check to see if the elements returned by the
+		// given selector contains the given terms (exact match).
+		// Return the elements that match
+		function GetElementsContaining(context, selector, terms, not) {
+			var elements = [];
+			$j(context).find(selector).each(function() {
+				// If a not then it must not match all terms. So it is by default true.
+				// Else it must match a term. So it is by default false.
+				var valid = not;
+
+				// trim and convert the inner text to uppercase
+				var text = $j(this).text().trim().toUpperCase();
+
+				// compare each term
+				for(var i = 0; i < terms.length; i++) {
+					var term = terms[i].toUpperCase();
+					var isMatch = text.indexOf(term) === 0;
+
+					// If a not and it matches a term then it is not valid
+					if (not && isMatch) {
+						valid = false;
+						break;
+					}
+
+					// if not a not and it matches a term then it is valid
+					if (!not &&  isMatch) {
+						valid = true;
+						break;
+					}
+				}
+
+				// if a valid match then push the element
+				if (valid) {
+					elements.push(this);
+				}
+			});
+			return $(elements);
+		}
+
+		// Add classes to Product Option Select boxes.
+		// Must set the cable select as the 'first' option.  Test each select's label
+		// before beginning to add classes.  This code assumes that dependent selects
+		// will occur directly after the Cable select
+		var foundCableSelect = false;
+		var classes = ['first-option', 'second-option', 'third-option'];
+		var currentClass = 0;
+		$j('#product-options-wrapper').find('select').each(function() {
+			var _t = $(this);	// Cache jQuery object
+			var label = _t.parent().parent().prev('dt').children('label').html();
+			if(/Cable/.test(label)) {
+				foundCableSelect = true;
+			}
+
+			if(foundCableSelect && classes.length > currentClass) {
+				_t.addClass(classes[currentClass]);
+				currentClass++;
+			}
+		});
+
+
+		var defaultWords = ["stock cable", "stock", "none"];
+		$j("#product-options-wrapper .first-option").change(function(e){
+			var others = $j('#product-options-wrapper').find('.second-option, .third-option');
+
+			// if it is set to please select then enable everything
+			if ($j(this).find('option:selected:contains("Please Select")').length > 0 ) {
+				$j(others).find('option').removeAttr('disabled');
+			} else {
+				if( GetElementsContaining(this, 'option:selected', defaultWords, false).length > 0 ) {
+					GetElementsContaining(others, 'option', defaultWords, false).removeAttr('disabled');
+					GetElementsContaining(others, 'option', defaultWords, true).attr('disabled', 'disabled');
+					GetElementsContaining(others, 'option:selected', defaultWords, true).parent().val('');
+				}
+
+				else {
+					GetElementsContaining(others, 'option', defaultWords, false).attr('disabled', 'disabled');
+					GetElementsContaining(others, 'option', defaultWords, true).removeAttr('disabled');
+					GetElementsContaining(others, 'option:selected', defaultWords, false).parent().val('');
+				}
+	        }
+
+	    });
+
+
+	});
+
+</script>
+
+

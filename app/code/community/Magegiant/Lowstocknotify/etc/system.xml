@@ -1,0 +1,176 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magegiant
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the magegiant.com license that is
+ * available through the world-wide-web at this URL:
+ * http://magegiant.com/license-agreement/
+ * 
+ * DISCLAIMER
+ * 
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ * 
+ * @category    Magegiant
+ * @package     Magegiant_Lowstocknotify
+ * @copyright   Copyright (c) 2014 Magegiant (http://magegiant.com/)
+ * @license     http://magegiant.com/license-agreement/
+ */
+-->
+<config>
+    <tabs>
+        <magegiant translate="label">
+            <label>Magegiant Extensions</label>
+            <sort_order>100</sort_order>
+        </magegiant>
+    </tabs>
+    <sections>
+        <lowstocknotify translate="label" module="lowstocknotify">
+            <class>separator-top</class>
+            <label>Low Stock Email Notification</label>
+            <tab>magegiant</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>299</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <general translate="label">
+                    <label>General Settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>        
+                        <enable translate="label">
+                            <label>Enable</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>1</sort_order>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment></comment>
+                        </enable>
+
+                        <field_notification translate="label comment">
+                            <label>
+                                <![CDATA[
+                                Note:<br />
+                                - Update latest version at <a href="http://go.magegiant.com/low-stock-email-notication-update" target="_blank">Magegiant</a><br /> 
+                                - Reduce shopping cart abandonment rate <a href="http://go.magegiant.com/one-step-checkout-lsu" target="_blank">learn more</a><br /> 
+                                - How to increase loyalty customers <a href="http://go.magegiant.com/reward-points-lsu" target="_blank">learn more</a><br /> 
+
+                                <br />
+                                <p>
+                                    <strong>Run Cron job:</strong>
+                                    - URL: http://www.example.com/lowstocknotify/index/cron<br />
+                                    - Run at 4AM daily: <strong>0 4 * * * curl -s -o /dev/null http://www.example.com/lowstocknotify/index/cron</strong> <br />
+                                    - Run at 4AM daily: <strong>0 4 * * * wget -O /dev/null http://www.example.com/lowstocknotify/index/cron</strong> <br />
+
+                                </p>
+                                        ]]>
+                            </label>
+                            <frontend_type>label</frontend_type>
+                            <frontend_model>lowstocknotify/adminhtml_system_config_notification</frontend_model>
+                            <margin_top>0px</margin_top>
+                            <sort_order>22</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment></comment>
+                        </field_notification>
+
+                    </fields>
+                </general>
+
+                <notify translate="label">
+                    <label>Low stock report</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>20</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+
+
+                        <trigger translate="label">
+                            <label>When run notify low stock</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>lowstocknotify/system_config_trigger</source_model>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[If you select cron job, learn <a href="http://go.magegiant.com/cronjob" target="_blank">how to setup cronjob</a>]]></comment>
+                        </trigger>
+
+
+                        <from translate="label">
+                            <label>From</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_identity</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </from>
+
+                        <emails translate="label">
+                            <label>Notify to email(s)</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[separate by comma ","]]></comment>
+                        </emails>
+
+                        <name translate="label">
+                            <label>Admin name</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment></comment>
+                        </name>
+
+                        <template translate="label">
+                            <label>Email template</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_template</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Select email template</comment>
+                        </template>
+
+                        <!--<cronjob translate="label">-->
+                            <!--<label>Cron-job</label>-->
+                            <!--<frontend_type>text</frontend_type>-->
+                            <!--<sort_order>30</sort_order>-->
+                            <!--<show_in_default>1</show_in_default>-->
+                            <!--<show_in_website>1</show_in_website>-->
+                            <!--<show_in_store>1</show_in_store>-->
+                            <!--<comment><![CDATA[Setup cronjob E.g:-->
+                            <!--- Hourly: 0 * * * *-->
+                            <!--- Every 4 hours: 0 */4 * * *-->
+                            <!--- Daily: 0 0 * * *-->
+                            <!--- Weekly: 0 0 */7 * *-->
+                            <!--]]></comment>-->
+                        <!--</cronjob>-->
+
+
+                    </fields>
+                </notify>
+
+            </groups>
+        </lowstocknotify>
+    </sections>
+</config>

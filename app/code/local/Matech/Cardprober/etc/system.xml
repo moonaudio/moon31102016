@@ -1,0 +1,236 @@
+<?xml version="1.0"?>
+<config>
+    <tabs>
+        <efraud_cardprober translate="label" module="cardprober">
+            <label>eFraud Security</label>
+            <sort_order>10</sort_order>
+        </efraud_cardprober>
+    </tabs>
+    <sections>
+        <efraud_cardprober_section  translate="label" module="cardprober">                    
+            <label>eFraud Security Setting</label>
+            <tab>efraud_cardprober</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>10</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>            
+            <groups>
+                <efraud_cardprober_group translate="label"> 
+                    <label>eFraud Security Setting</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>0</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <status translate="label">
+                            <label>Enable/Disable</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Enable Disable Extension</comment>
+                        </status>
+                        <api_url translate="label">
+                            <label>eFraud Security Api URL</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Enter eFraud Security Api URL</comment>
+                            <depends>
+                                <status>1</status>
+                            </depends>
+                        </api_url>
+                        <username translate="label">
+                            <label>API Username</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Enter API Username</comment>
+                            <depends>
+                                <status>1</status>
+                            </depends>
+                        </username>
+                        <password translate="label">
+                            <label>API Password</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Enter API Password</comment>
+                            <depends>
+                                <status>1</status>
+                            </depends>
+                        </password>
+                         <sitename translate="label">
+                            <label>Site Name</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Enter API Site Name</comment>
+                            <depends>
+                                <status>1</status>
+                            </depends>
+                        </sitename>
+                         <token translate="label">
+                            <label>Token</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Enter Token (base 64 converted)</comment>
+                            <depends>
+                                <status>1</status>
+                            </depends>
+                        </token>
+						  <logging translate="label">
+						  <label>Debug</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Enable Disable Debug</comment>
+                            <depends>
+                                <status>1</status>
+                            </depends>
+                        </logging> 
+                    </fields>
+                </efraud_cardprober_group>
+            </groups>
+                                        
+         <!--    <groups>
+                <efraud_cardprober_group translate="label"> 
+                    <label>eFraud Security Setting</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>0</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <status translate="label">
+                            <label>Enable/Disable</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Enable Disable Extension</comment>
+                        </status>
+                        <api_url translate="label">
+                            <label>eFraud Security Api URL</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Enter eFraud Security Api URL</comment>
+                            <depends>
+                                <status>1</status>
+                            </depends>
+                        </api_url>
+                        <username translate="label">
+                            <label>API Username</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Enter API Username</comment>
+                            <depends>
+                                <status>1</status>
+                            </depends>
+                        </username>
+                        <password translate="label">
+                            <label>API Password</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Enter API Password</comment>
+                            <depends>
+                                <status>1</status>
+                            </depends>
+                        </password>
+                    </fields>
+                </efraud_cardprober_group>  -->
+                <!-- 2nd group -->
+                <!--
+                  <efraud_cardprober_setting translate="label"> 
+                    <label>eFraud Security  Pre-Defined Action</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>2</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <auto_status translate="label">
+                            <label>Auto Mode</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Enable Disable Extension</comment>
+                        </auto_status>
+                        <api_url translate="label">
+                            <label>eFraud Security Api URL</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Enter eFraud Security Api URL</comment>
+                            <depends>
+                                <auto_status>1</auto_status>
+                            </depends>
+                        </api_url>
+                        <username translate="label">
+                            <label>API Username</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Enter API Username</comment>
+                            <depends>
+                                <auto_status>1</auto_status>
+                            </depends>
+                        </username>
+                        <password translate="label">
+                            <label>API Password</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Enter API Password</comment>
+                            <depends>
+                                <auto_status>1</auto_status>
+                            </depends>
+                        </password>
+                    </fields>
+                </efraud_cardprober_setting>
+                -->
+                <!-- End of 2nd group -->
+           <!--  </groups>      -->   
+                                        
+                                        
+        </efraud_cardprober_section>
+    </sections>
+</config>

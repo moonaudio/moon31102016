@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!--
+/**
+* @category   springbot
+* @package    springbot_Shadow
+* @author     springbot integration team
+*/
+-->
+<layout>
+    <default>
+        <reference name="before_body_end">
+            <block type="shadow/js_boot" name="shadow.js.boot" template="shadow/js/boot.phtml"/>
+        </reference>
+    </default>
+
+    <shadow_frontend_index_index>
+        <block type="core/template"  name="root" output="toHtml"  template="shadow/emailupdate.phtml"/>
+    </shadow_frontend_index_index>
+
+    <checkout_onepage_success>
+        <reference name="before_body_end">
+            <block type="core/template" template="shadow/conversion.phtml" name="shadow.conversion" />
+        </reference>
+    </checkout_onepage_success>
+
+</layout>
+
+

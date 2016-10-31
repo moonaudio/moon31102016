@@ -1,0 +1,119 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magento Webshopapps Shipping Module
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category   Webshopapps
+ * @package    Webshopapps_Shippingoverride2
+ * @copyright   Copyright (c) 2013 Zowta Ltd (http://www.WebShopApps.com)
+ *              Copyright, 2013, Zowta, LLC - US license
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @author     Karen Baker <enquiries@webshopapps.com>
+*/
+-->
+<config>
+    <modules>
+        <Webshopapps_Shippingoverride2>
+            <version>0.0.8</version>
+        </Webshopapps_Shippingoverride2>
+    </modules>
+    <global>
+        <models>
+            <shippingoverride2>
+                <class>Webshopapps_Shippingoverride2_Model</class>
+                <resourceModel>shippingoverride2_mysql4</resourceModel>
+            </shippingoverride2>
+            <shippingoverride2_mysql4>
+                <class>Webshopapps_Shippingoverride2_Model_Mysql4</class>
+                <entities>
+                    <shippingoverride2>
+                        <table>shippingoverride2</table>
+                    </shippingoverride2>
+                </entities>
+            </shippingoverride2_mysql4>
+            <shipping>
+                <rewrite>
+                    <shipping>Webshopapps_Wsacommon_Model_Shipping_Shipping</shipping>
+                </rewrite>
+            </shipping>
+        </models>
+        <blocks>
+            <shippingoverride2_adminhtml>
+                <class>Webshopapps_Shippingoverride2_Block_Adminhtml</class>
+            </shippingoverride2_adminhtml>
+        </blocks>
+        <helpers>
+            <shippingoverride2>
+                <class>Webshopapps_Shippingoverride2_Helper</class>
+            </shippingoverride2>
+        </helpers>
+        <events>
+            <admin_system_config_changed_section_shipping>
+                <observers>
+                    <shippingoverride2_observer>
+                        <class>shippingoverride2/observer</class>
+                        <method>postError</method>
+                    </shippingoverride2_observer>
+                </observers>
+            </admin_system_config_changed_section_shipping>
+        </events>
+        <resources>
+            <shippingoverride2_setup>
+                <setup>
+                    <module>Webshopapps_Shippingoverride2</module>
+                    <class>Mage_Eav_Model_Entity_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+                <shippingoverride2_write>
+                    <connection>
+                        <use>core_write</use>
+                    </connection>
+                </shippingoverride2_write>
+                <shippingoverride2_read>
+                    <connection>
+                        <use>core_read</use>
+                    </connection>
+                </shippingoverride2_read>
+            </shippingoverride2_setup>
+        </resources>
+        <sales>
+            <quote>
+                <item>
+                    <product_attributes>
+                        <special_shipping_group/>
+                        <shipping_price/>
+                    </product_attributes>
+                </item>
+            </quote>
+        </sales>
+    </global>
+    <default>
+        <shipping>
+            <shippingoverride2>
+                <serial backend_model="adminhtml/system_config_backend_encrypted"/>
+                <specificerrmsg>This shipping method is currently unavailable. If you would like to ship using this shipping method, please contact us.</specificerrmsg>
+                <star_include_all>1</star_include_all>
+                <ship_once>0</ship_once>
+                <fedex_ground>0</fedex_ground>
+            </shippingoverride2>
+        </shipping>
+    </default>
+</config>

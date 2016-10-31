@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * RocketWeb
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ *
+ * @category   RocketWeb
+ * @package    RocketWeb_GoogleBaseFeedGenerator
+ * @copyright  Copyright (c) 2012 RocketWeb (http://rocketweb.com)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @author     RocketWeb
+ */
+-->
+<config>
+    <directives>
+        <rw_gbase_directive_static_value>
+            <label><![CDATA[Static Value]]></label>
+            <source_model>googlebasefeedgenerator/source_directive_static</source_model>
+        </rw_gbase_directive_static_value>
+        <rw_gbase_directive_id>
+            <label><![CDATA[Product Id]]></label>
+            <source_model>googlebasefeedgenerator/source_directive_product_id</source_model>
+            <param>0</param>
+        </rw_gbase_directive_id>
+        <rw_gbase_directive_item_group_id>
+            <label><![CDATA[Item Group ID]]></label>
+            <source_model>googlebasefeedgenerator/source_directive_itemGroupId</source_model>
+            <param><![CDATA[sku]]></param>
+        </rw_gbase_directive_item_group_id>
+        <rw_gbase_directive_url>
+            <label><![CDATA[Product URL]]></label>
+            <source_model>googlebasefeedgenerator/source_directive_product_url</source_model>
+            <param><![CDATA[]]></param>
+        </rw_gbase_directive_url>
+        <rw_gbase_directive_image_link>
+            <label><![CDATA[Product Image URL]]></label>
+            <source_model>googlebasefeedgenerator/source_directive_product_image</source_model>
+            <param>image</param>
+        </rw_gbase_directive_image_link>
+        <rw_gbase_directive_additional_image_link>
+            <label><![CDATA[Product Additional Images URLs]]></label>
+            <source_model>googlebasefeedgenerator/source_directive_product_imageadditional</source_model>
+            <param>image</param>
+        </rw_gbase_directive_additional_image_link>
+        <rw_gbase_directive_category_image_link>
+            <label><![CDATA[Product Category Image URL]]></label>
+            <source_model>googlebasefeedgenerator/source_directive_helper</source_model>
+            <param><![CDATA[First category found with an image is been used.]]></param>
+        </rw_gbase_directive_category_image_link>
+        <rw_gbase_directive_external_image_link>
+            <label><![CDATA[Toybanana External Image URL]]></label>
+            <source_model>googlebasefeedgenerator/source_directive_helper</source_model>
+            <param><![CDATA[Outputs "Toybanana/ExtImages" images.]]></param>
+        </rw_gbase_directive_external_image_link>
+        <rw_gbase_directive_image_link_360magic>
+            <label><![CDATA[Product Image URL 360_Magic]]></label>
+            <source_model>googlebasefeedgenerator/source_directive_magic360</source_model>
+            <param>0001</param>
+        </rw_gbase_directive_image_link_360magic>
+        <rw_gbase_directive_additional_image_link_360magic>
+            <label><![CDATA[Product Additional Image URL 360_Magic]]></label>
+            <source_model>googlebasefeedgenerator/source_directive_magic360</source_model>
+            <param>0001</param>
+        </rw_gbase_directive_additional_image_link_360magic>
+        <rw_gbase_directive_price>
+            <label><![CDATA[Price]]></label>
+            <source_model>googlebasefeedgenerator/source_directive_product_price</source_model>
+            <param>1</param>
+        </rw_gbase_directive_price>
+        <rw_gbase_directive_sale_price>
+            <label><![CDATA[Sale Price]]></label>
+            <source_model>googlebasefeedgenerator/source_directive_product_price</source_model>
+            <param>1</param>
+        </rw_gbase_directive_sale_price>
+        <rw_gbase_directive_sale_price_effective_date>
+            <label><![CDATA[Sale Price Date Range]]></label>
+            <source_model>googlebasefeedgenerator/source_directive_helper</source_model>
+            <param><![CDATA[Computes the start and end dates of special price. If end date is not specified, defaults to one year.]]></param>
+        </rw_gbase_directive_sale_price_effective_date>
+        <rw_gbase_directive_availability>
+            <label><![CDATA[Availability]]></label>
+            <source_model>googlebasefeedgenerator/source_directive_helper</source_model>
+            <param><![CDATA[Computes the product availability: in stock / out of stock. See additional setting <a href="javascript:getAnchor('general','availability');">Use default Stock Statuses</a>]]></param>
+        </rw_gbase_directive_availability>
+        <rw_gbase_directive_quantity>
+            <label><![CDATA[Inventory Count]]></label>
+            <source_model>googlebasefeedgenerator/source_directive_product_quantity</source_model>
+            <param>0</param>
+        </rw_gbase_directive_quantity>
+        <rw_gbase_directive_expiration_date>
+            <label><![CDATA[Product Expiration in Feed]]></label>
+            <source_model>googlebasefeedgenerator/source_directive_expiration</source_model>
+            <param>7</param>
+        </rw_gbase_directive_expiration_date>
+        <rw_gbase_directive_shipping>
+            <label><![CDATA[Shipping]]></label>
+            <source_model>googlebasefeedgenerator/source_directive_helper</source_model>
+            <param><![CDATA[Please configure the section below: <br /><a href="javascript:getAnchor('shipping','shipping');">Shipping</a>]]></param>
+        </rw_gbase_directive_shipping>
+        <rw_gbase_directive_shipping_weight>
+            <label><![CDATA[Shipping Weight]]></label>
+            <source_model>googlebasefeedgenerator/source_directive_product_weight</source_model>
+        </rw_gbase_directive_shipping_weight>
+        <rw_gbase_directive_variant_attributes>
+            <label><![CDATA[Variant Attributes]]></label>
+            <source_model>googlebasefeedgenerator/source_directive_variants</source_model>
+        </rw_gbase_directive_variant_attributes>
+        <rw_gbase_directive_product_option>
+            <label><![CDATA[Product Option]]></label>
+            <source_model>googlebasefeedgenerator/source_directive_product_option</source_model>
+        </rw_gbase_directive_product_option>
+        <rw_gbase_directive_price_buckets>
+            <label><![CDATA[Adwords Price Buckets]]></label>
+            <source_model>googlebasefeedgenerator/source_directive_helper</source_model>
+            <param><![CDATA[Please configure the setting below: <br /><a href="javascript:getAnchor('filters','adwords_price_buckets');">Adwords Price Buckets</a>]]></param>
+        </rw_gbase_directive_price_buckets>
+        <rw_gbase_directive_product_review_average>
+            <label><![CDATA[Product Review Average]]></label>
+        </rw_gbase_directive_product_review_average>
+        <rw_gbase_directive_product_review_count>
+            <label><![CDATA[Product Review Count]]></label>
+        </rw_gbase_directive_product_review_count>
+        <rw_gbase_directive_product_type_magento_category>
+            <label><![CDATA[Product Type using Magento Category Path]]></label>
+            <source_model>googlebasefeedgenerator/source_directive_product_categorypath</source_model>
+            <param>3</param>
+        </rw_gbase_directive_product_type_magento_category>
+        <rw_gbase_directive_google_category_by_category>
+            <label><![CDATA[Taxonomy by Category]]></label>
+            <source_model>googlebasefeedgenerator/source_directive_helper</source_model>
+            <param><![CDATA[This directive requires you to configure taxonomies under <a href="javascript:getAnchor('category','categories_provider_taxonomy_by_category');">Categories Map</a>]]></param>
+        </rw_gbase_directive_google_category_by_category>
+        <rw_gbase_directive_identifier_exists>
+            <label><![CDATA[Identifier Exists]]></label>
+            <source_model>googlebasefeedgenerator/source_directive_identifier_exists</source_model>
+            <param><![CDATA[brand,gtin]]></param>
+        </rw_gbase_directive_identifier_exists>
+        <rw_gbase_directive_concatenate>
+            <label><![CDATA[Concatenate Attributes]]></label>
+            <source_model>googlebasefeedgenerator/source_directive_concatenate</source_model>
+            <param>Product's name is "{{name}}" and sku is "{{sku}}".</param>
+        </rw_gbase_directive_concatenate>
+        <rw_gbase_directive_is_bundle>
+            <label><![CDATA[Is Bundle]]></label>
+            <source_model>googlebasefeedgenerator/source_directive_helper</source_model>
+            <param>Outputs TRUE for bundle items and FALSE for the rest.</param>
+        </rw_gbase_directive_is_bundle>
+    </directives>
+
+    <default_map_product_columns>
+        <rw_gbase_directive_id>
+            <column>id</column>
+            <order>10</order>
+            <param>0</param>
+        </rw_gbase_directive_id>
+        <name>
+            <column>title</column>
+            <order>20</order>
+        </name>
+        <description>
+            <column>description</column>
+            <order>30</order>
+        </description>
+        <rw_gbase_directive_url>
+            <column>link</column>
+            <order>40</order>
+            <param><![CDATA[]]></param>
+        </rw_gbase_directive_url>
+        <rw_gbase_directive_price>
+            <column>price</column>
+            <order>50</order>
+            <param>1</param>
+        </rw_gbase_directive_price>
+        <rw_gbase_directive_sale_price>
+            <column>sale_price</column>
+            <order>60</order>
+            <param>1</param>
+        </rw_gbase_directive_sale_price>
+        <rw_gbase_directive_availability>
+            <column>availability</column>
+            <order>70</order>
+        </rw_gbase_directive_availability>
+        <manufacturer>
+            <column>brand</column>
+            <order>100</order>
+        </manufacturer>
+        <sku>
+            <column>sku</column>
+            <order>110</order>
+        </sku>
+        <rw_gbase_directive_product_type_magento_category>
+            <column>category</column>
+            <order>120</order>
+            <param>3</param>
+        </rw_gbase_directive_product_type_magento_category>
+    </default_map_product_columns>
+
+    <default_feed_config>
+        <general>
+            <name/>
+            <store_id/>
+            <currency/>
+            <feed_dir><![CDATA[media/feeds]]></feed_dir>
+            <apply_catalog_price_rules>1</apply_catalog_price_rules>
+            <use_default_stock>1</use_default_stock>
+            <stock_attribute_code></stock_attribute_code>
+            <use_image_cache>0</use_image_cache>
+            <max_title_length>70</max_title_length>
+            <max_description_length>1000</max_description_length>
+        </general>
+        <columns>
+            <map_product_columns/>
+        </columns>
+        <categories>
+            <locale>en-US</locale>
+            <include_all_products>1</include_all_products>
+            <provider_taxonomy_by_category/>
+        </categories>
+        <filters>
+            <add_out_of_stock>1</add_out_of_stock>
+            <product_types>simple,bundle,configurable,downloadable,grouped,virtual</product_types>
+            <attribute_sets/>
+            <map_replace_empty_columns><![CDATA[a:3:{s:16:"_1422458072006_6";a:3:{s:5:"order";s:2:"10";s:6:"column";s:23:"google_product_category";s:9:"attribute";s:28:"rw_google_base_product_categ";}s:18:"_1422458099285_285";a:3:{s:5:"order";s:2:"20";s:6:"column";s:12:"product_type";s:9:"attribute";s:27:"rw_google_base_product_type";}s:18:"_1422458113593_593";a:4:{s:5:"order";s:2:"30";s:6:"column";s:5:"brand";s:9:"attribute";s:31:"rw_gbase_directive_static_value";s:5:"param";s:13:"not specified";}}]]></map_replace_empty_columns>
+            <find_and_replace/>
+            <skip_column_empty><![CDATA[id,image_link,link,price]]></skip_column_empty>
+            <adwords_price_buckets/>
+        </filters>
+        <options>
+            <mode>1</mode>
+            <vary_categories/>
+        </options>
+        <configurable>
+            <associated_products_mode>1</associated_products_mode>
+            <add_out_of_stock>1</add_out_of_stock>
+            <inherit_parent_out_of_stock>1</inherit_parent_out_of_stock>
+            <associated_products_link_add_unique>1</associated_products_link_add_unique>
+            <attribute_merge_value_separator><![CDATA[, ]]></attribute_merge_value_separator>
+            <associated_products_title>2</associated_products_title>
+            <associated_products_description>2</associated_products_description>
+            <associated_products_link>2</associated_products_link>
+            <associated_products_image_link>2</associated_products_image_link>
+        </configurable>
+        <grouped>
+            <associated_products_mode>1</associated_products_mode>
+            <add_out_of_stock>1</add_out_of_stock>
+            <associated_products_link_add_unique>1</associated_products_link_add_unique>
+            <price_display_mode>0</price_display_mode>
+            <associated_products_title>2</associated_products_title>
+            <associated_products_description>2</associated_products_description>
+            <associated_products_link>2</associated_products_link>
+            <associated_products_image_link>2</associated_products_image_link>
+        </grouped>
+        <bundle>
+            <associated_products_mode>1</associated_products_mode>
+            <combined_weight>0</combined_weight>
+        </bundle>
+        <shipping>
+            <methods/>
+            <country/>
+            <only_minimum>1</only_minimum>
+            <only_free_shipping>1</only_free_shipping>
+            <add_tax_to_price>0</add_tax_to_price>
+
+            <by_region>1</by_region>
+            <country_with_region/>
+            <cache_enabled>1</cache_enabled>
+            <ttl>168</ttl>
+            <carrier_realtime><![CDATA[ups,usps,fedex,dhl,dhlint]]></carrier_realtime>
+        </shipping>
+        <schedule>
+            <!-- Leave value empty to retrieve value from config.xml default/general/ node-->
+            <batch_mode></batch_mode>
+            <batch_limit></batch_limit>
+        </schedule>
+        <ftp>
+            <mode></mode>
+            <path></path>
+        </ftp>
+    </default_feed_config>
+</config>

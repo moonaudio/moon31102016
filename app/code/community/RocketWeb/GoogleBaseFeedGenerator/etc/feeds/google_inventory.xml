@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * RocketWeb
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ *
+ * @category   RocketWeb
+ * @package    RocketWeb_GoogleBaseFeedGenerator
+ * @copyright  Copyright (c) 2012 RocketWeb (http://rocketweb.com)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @author     RocketWeb
+ */
+-->
+<config>
+    <directives>
+        <rw_gbase_directive_static_value>
+            <label><![CDATA[Static Value]]></label>
+            <source_model>googlebasefeedgenerator/source_directive_static</source_model>
+        </rw_gbase_directive_static_value>
+        <rw_gbase_directive_id>
+            <label><![CDATA[Product Id]]></label>
+            <source_model>googlebasefeedgenerator/source_directive_product_id</source_model>
+            <param>0</param>
+        </rw_gbase_directive_id>
+        <rw_gbase_directive_price>
+            <label><![CDATA[Price]]></label>
+            <source_model>googlebasefeedgenerator/source_directive_product_price</source_model>
+            <param>1</param>
+        </rw_gbase_directive_price>
+        <rw_gbase_directive_sale_price>
+            <label><![CDATA[Sale Price]]></label>
+            <source_model>googlebasefeedgenerator/source_directive_product_price</source_model>
+            <param>1</param>
+        </rw_gbase_directive_sale_price>
+        <rw_gbase_directive_sale_price_effective_date>
+            <label><![CDATA[Sale Price Date Range]]></label>
+            <source_model>googlebasefeedgenerator/source_directive_helper</source_model>
+            <param><![CDATA[Computes the start and end dates of special price. If end date is not specified, defaults to one year.]]></param>
+        </rw_gbase_directive_sale_price_effective_date>
+        <rw_gbase_directive_availability>
+            <label><![CDATA[Availability]]></label>
+            <source_model>googlebasefeedgenerator/source_directive_helper</source_model>
+            <param><![CDATA[Computes the product availability: in stock / out of stock. See additional setting <a href="javascript:getAnchor('general','availability');">Use default Stock Statuses</a>]]></param>
+        </rw_gbase_directive_availability>
+        <rw_gbase_directive_quantity>
+            <label><![CDATA[Inventory Count]]></label>
+            <source_model>googlebasefeedgenerator/source_directive_product_quantity</source_model>
+            <param>0</param>
+        </rw_gbase_directive_quantity>
+        <rw_gbase_directive_concatenate>
+            <label><![CDATA[Concatenate Attributes]]></label>
+            <source_model>googlebasefeedgenerator/source_directive_concatenate</source_model>
+            <param>Product's name is "{{name}}" and sku is "{{sku}}".</param>
+        </rw_gbase_directive_concatenate>
+    </directives>
+
+    <default_map_product_columns>
+        <rw_gbase_directive_id>
+            <column>id</column>
+            <order>10</order>
+            <param>0</param>
+        </rw_gbase_directive_id>
+        <rw_gbase_directive_price>
+            <column>price</column>
+            <order>20</order>
+            <param>1</param>
+        </rw_gbase_directive_price>
+        <rw_gbase_directive_availability>
+            <column>availability</column>
+            <order>30</order>
+        </rw_gbase_directive_availability>
+        <rw_gbase_directive_sale_price>
+            <column>sale_price</column>
+            <order>40</order>
+            <param>1</param>
+        </rw_gbase_directive_sale_price>
+        <rw_gbase_directive_sale_price_effective_date>
+            <column>sale_price_effective_date</column>
+            <order>50</order>
+        </rw_gbase_directive_sale_price_effective_date>
+    </default_map_product_columns>
+
+    <default_feed_config>
+        <general>
+            <name/>
+            <store_id/>
+            <feed_dir><![CDATA[media/feeds]]></feed_dir>
+            <apply_catalog_price_rules>1</apply_catalog_price_rules>
+            <use_default_stock>1</use_default_stock>
+            <stock_attribute_code></stock_attribute_code>
+        </general>
+        <columns>
+            <map_product_columns/>
+        </columns>
+        <categories>
+            <include_all_products>1</include_all_products>
+        </categories>
+        <filters>
+            <add_out_of_stock>1</add_out_of_stock>
+            <product_types>simple,bundle,configurable,downloadable,grouped,virtual</product_types>
+            <attribute_sets/>
+            <find_and_replace/>
+            <skip_column_empty><![CDATA[id,price,availability]]></skip_column_empty>
+        </filters>
+        <options>
+            <mode>1</mode>
+            <vary_categories/>
+        </options>
+        <configurable>
+            <associated_products_mode>1</associated_products_mode>
+            <add_out_of_stock>1</add_out_of_stock>
+            <inherit_parent_out_of_stock>1</inherit_parent_out_of_stock>
+        </configurable>
+        <grouped>
+            <associated_products_mode>1</associated_products_mode>
+            <add_out_of_stock>1</add_out_of_stock>
+            <associated_products_link_add_unique>1</associated_products_link_add_unique>
+            <price_display_mode>0</price_display_mode>
+        </grouped>
+        <bundle>
+            <associated_products_mode>1</associated_products_mode>
+        </bundle>
+        <schedule>
+            <!-- Leave value empty to retrieve value from config.xml default/general/ node-->
+            <batch_mode></batch_mode>
+            <batch_limit></batch_limit>
+        </schedule>
+        <ftp>
+            <mode></mode>
+        </ftp>
+    </default_feed_config>
+</config>

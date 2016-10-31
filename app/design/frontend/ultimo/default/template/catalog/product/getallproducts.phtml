@@ -1,0 +1,15 @@
+<?php
+$category = Mage::getModel('catalog/category')->load(114);    
+$collection = Mage::getModel('catalog/product')->getCollection()
+        ->addCategoryFilter($category);
+//you can use the next lines to add some minimal information about the products to the collection
+//thanks @DavidManners
+$collection->addAttributeToSelect(Mage::getSingleton('catalog/config')->getProductAttributes()) //add list attributes
+            ->addMinimalPrice() //add prices
+            ->addFinalPrice()
+            ->addTaxPercents()
+//or
+//$collection->addAttributeToSelect('*');//if you want all the attributes
+Mage::getSingleton('catalog/product_status')->addVisibleFilterToCollection($collection);//only enabled products
+Mage::getSingleton('catalog/product_visibility')->addVisibleInCatalogFilterToCollection($collection);//only visible products
+?>

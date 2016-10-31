@@ -1,0 +1,147 @@
+<?php
+/**
+ * Use this template to display the sidebar menu inside static blocks and pages.
+ */
+?>
+<?php
+$helper = Mage::helper('ultramegamenu');
+$visibilityClass = $helper->getCfg('sidemenu/hide_on_mobile') ? ' hide-below-768' : '';
+
+//Get starting category - a point where traverse begins
+$categoryId = $this->getParent();
+if ($categoryId === NULL) { //Param not set
+    $categoryId = $helper->getCfg('sidemenu/parent');
+}
+
+//Get depth of recursion - how many levels of subcategories retrieve
+$depth = $this->getDepth();
+if ($depth === NULL) { //Param not set
+    $depth = intval($helper->getCfg('sidemenu/depth'));
+} else {
+    $depth = intval($depth);
+}
+
+//Render categories menu HTML
+$html = $this->renderMe(TRUE);
+// $html = $this->renderMe(TRUE, $categoryId, $depth); 
+if (!$html) {
+    return '';
+}
+?>
+<div class="block block-vertnav<?php echo $visibilityClass; ?>">
+    <div class="block-title">
+        <strong><span><?php echo $this->renderBlockTitle(); ?></span></strong>
+    </div>
+    <div class="block-content">
+<?php
+$currentCat = Mage::registry('current_category');
+$ids = $currentCat->getId();
+//echo $ids;
+//if Rootcategory display current category only
+//this gets around the problem of displaying DEFAULT CATEGORY
+if ($ids == Mage::app()->getStore()->getRootCategoryId()) {
+    ?>
+            <?php $_helper = Mage::helper('catalog/category') ?>
+            <?php //$_categories = $_helper->getStoreCategories() ?>
+            <?php $currentCategory = Mage::registry('current_category') ?>
+            <?php $_categories = Mage::getModel('catalog/category')->getCategories($currentCategory->entity_id); ?>
+            <?php if (count($_categories) > 0): ?>
+                <ul class="accordion accordion-style1 vertnav vertnav-side clearer">
+                <?php foreach ($_categories as $_category): ?>
+                        <li>
+                            <a href="<?php echo $_helper->getCategoryUrl($_category) ?>">
+                        <?php echo $_category->getName() ?>
+                            </a>
+            <?php $_category = Mage::getModel('catalog/category')->load($_category->getId()) ?>
+                                <?php $_subcategories = $_category->getChildrenCategories() ?>
+                                <?php if (count($_subcategories) > 0): ?>
+                                <span class="opener"></span>
+                                <ul class="level0 nav-submenu">
+                                <?php foreach ($_subcategories as $_subcategory): ?>
+                                        <li>
+                                            <a href="<?php echo $_helper->getCategoryUrl($_subcategory) ?>">
+                                        <?php echo $_subcategory->getName() ?>
+
+                                            </a>
+                                        </li>
+                                            <?php endforeach; ?>
+                                </ul>
+            <?php endif; ?>
+                        </li>
+                            <?php endforeach; ?>
+                </ul>
+                    <?php endif; ?>
+
+            <?php
+            }
+
+            else {
+                ?>
+				
+            <ul class="accordion accordion-style1 vertnav vertnav-side clearer">
+            <?php
+            
+            $cat = Mage::getModel('catalog/category')->load($ids);
+            $subcats = $cat->getChildren();
+            if ($subcats) {
+                $catArray = explode(',', $subcats);
+                foreach ($catArray as $child) {
+                    $_child = Mage::getModel('catalog/category')->load($child);
+                    echo '<li><a href="">' . $_child->getName() . '</a>';
+					$subsubcats = Mage::getModel('catalog/category')->load($_child->getId());
+					$x = $subsubcats->getChildren();
+					if($x){
+						$catArray1 = explode(',', $x);
+						echo "<span class='opener'></span>";
+						foreach ($catArray1 as $child1) {
+							$_child1 = Mage::getModel('catalog/category')->load($child1);
+							echo '<ul><li><a href="">' . $_child1->getName() . '</a></li></ul>';
+						}
+					}
+					echo "</li>";
+					
+                }
+            } else {  ?> 
+				
+			<?php
+				 $currentCategory = Mage::registry('current_category'); 
+             //$_categories = $currentCategory->getId();
+			 $_categories =  $currentCategory->getParentId();
+			 
+			   $loadCategory = Mage::getModel('catalog/category')->load($currentCategory->getParentId());
+			   //print_r($loadCategory);
+			   $subCategories1 = explode(',', $loadCategory->getChildren());
+			 foreach ($subCategories1 as $single) { 
+			 $_single = Mage::getModel('catalog/category')->load($single); ?>
+			 <li> <a href="<?php echo $_single->getUrl(); ?>"><?php echo $_single->getName(); ?></a> </li>
+			<?php }
+			 exit;
+                $parentCategoryId = $this->getCurrentCategory()->getParentCategory()->getId();
+				print_r( $parentCategoryId);
+                $children = Mage::getModel('catalog/category')->getCategories($parentCategoryId);
+                foreach ($children as $category) {
+                    ?>
+                        <li> <a href="<?php echo $category->getUrl(); ?>"><?php echo $category->getName(); ?></a> </li>
+                    <?php }
+                } ?>
+
+            </ul>
+
+                <?php
+            }
+            ?>
+
+
+
+
+        <!--<ul class="accordion accordion-style1 vertnav vertnav-side clearer"> <?php //Class "vertnav-side" left for backward compatibility  ?>
+<?php #echo $html;  ?>
+                        
+        </ul>-->
+    </div>
+</div>
+<?php #echo $this->getLayout()->createBlock('cms/block')->setBlockId('category_data')->toHtml();   ?>
+
+<!--<a class="button" href="<?php #echo Mage::getBaseUrl().'brand-directory'; ?>">Shop by Brand</a>-->
+
+

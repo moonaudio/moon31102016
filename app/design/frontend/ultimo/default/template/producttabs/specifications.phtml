@@ -1,0 +1,8 @@
+<?php
+$_product = Mage::registry('current_product');
+$attribute = $_product->getResource()->getAttribute('specs');
+if ($attribute)
+{
+    echo $attribute_value = $attribute ->getFrontend()->getValue($_product);
+}
+?>

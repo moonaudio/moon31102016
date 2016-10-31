@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Exinent_GoogleShoppingApi>
+            <active>false</active>
+            <codePool>community</codePool>  
+			<depends>
+				<Mage_Catalog/>
+			</depends>
+        </Exinent_GoogleShoppingApi>
+    </modules>
+</config>

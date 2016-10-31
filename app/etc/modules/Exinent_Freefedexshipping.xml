@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Exinent_Freefedexshipping>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Exinent_Freefedexshipping>
+    </modules>
+</config> 

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <AtlanticBT_Contacts>
+            <version>1.0</version>
+        </AtlanticBT_Contacts>
+    </modules>
+    <frontend>
+        <routers>
+            <contacts>
+                <args>
+                    <modules>
+                        <contacts before="Mage_Contacts">AtlanticBT_Contacts</contacts>
+                    </modules>
+                </args>
+            </contacts>
+        </routers>         
+    </frontend>    
+    <global>
+        <rewrite>
+            <contacts>
+                <from><![CDATA[#^/contacts/thankyou#]]></from>
+                <to><![CDATA[/contacts/index]]></to>
+            </contacts>    	    
+        </rewrite>
+    </global>
+</config>

@@ -1,0 +1,155 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    
+    <catalog_category_default>
+         <reference name="head">
+            <action method="addCss"><stylesheet>gallery/css/gallery.css</stylesheet></action>
+        </reference>
+            
+        <reference name="right">
+             <block type="gallery/gallery" name="newalbum" template="gallery/newalbums.phtml" >
+             <action method="setTotalAlbum"><total_album>4</total_album></action>
+             </block>                
+        </reference>
+    </catalog_category_default>
+    
+    <catalog_category_layered>
+         <reference name="head">
+            <action method="addCss"><stylesheet>gallery/css/gallery.css</stylesheet></action>
+        </reference>
+
+        <reference name="right">
+             <block type="gallery/gallery" name="newalbum" template="gallery/newalbums.phtml" >
+             <action method="setTotalAlbum"><total_album>4</total_album></action>
+             </block>                
+        </reference>
+    </catalog_category_layered>
+
+    <catalog_product_view>
+         <reference name="head">
+            <action method="addCss"><stylesheet>gallery/css/gallery.css</stylesheet></action>
+        </reference>
+
+        <reference name="product.info">
+             <block type="gallery/gallery" name="newalbum" template="gallery/newalbums.phtml" >
+             <action method="setTotalAlbum"><total_album>4</total_album></action>
+             </block>                
+        </reference>
+    </catalog_product_view>
+
+
+    <gallery_index_index>
+         <reference name="head">
+            <action method="setTemplate"><template>gallery/page/html/head.phtml</template></action>
+                <action method="addJs"><script>jquery/jquery.min.js</script></action>
+                <action method="addJs"><script>jquery/jquery_noconflict.js</script></action>
+                <action method="addItem"><type>skin_js</type><name>gallery/js/jquery.colorbox-min.js</name></action>
+                <action method="addCss"><stylesheet>gallery/css/gallery.css</stylesheet></action>
+                <action method="addCss"><stylesheet>gallery/css/colorbox.css</stylesheet></action>          
+                <action method="addItem"><type>skin_css</type><name>css/colorbox_ie6.css</name><params/><if>lt IE 8</if></action>
+                <block type="core/template" name="ie6.fix" template="gallery/ie6_fix.phtml" />
+        </reference>
+        
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+        
+        <reference name="content">
+            <block type="gallery/gallery" name="gallery" template="gallery/album.phtml" >
+                <block type="core/template" name="search_form" as="search_form" >
+                    <action method="setTemplate" ifconfig="gallery/info/enabledsearch">
+                        <template>gallery/search/searchform.phtml</template>
+                    </action>
+                </block>
+            </block>
+            <!--<block type="gallery/ajax" name="ajax" template="gallery/ajax.phtml" />-->
+        </reference>                
+
+    </gallery_index_index>
+    
+    <gallery_view_album>
+         <reference name="head">
+            <action method="setTemplate"><template>gallery/page/html/head.phtml</template></action>
+                <action method="addJs"><script>jquery/jquery.min.js</script></action>
+                <action method="addJs"><script>jquery/jquery_noconflict.js</script></action>
+                <action method="addItem"><type>skin_js</type><name>gallery/js/jquery.colorbox-min.js</name></action>
+                <action method="addCss"><stylesheet>gallery/css/gallery.css</stylesheet></action>
+                <action method="addCss"><stylesheet>gallery/css/colorbox.css</stylesheet></action>          
+                <action method="addItem"><type>skin_css</type><name>css/colorbox_ie6.css</name><params/><if>lt IE 8</if></action>
+                <block type="core/template" name="ie6.fix" template="gallery/ie6_fix.phtml" />
+        </reference>
+
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+        <reference name="content">
+            <block type="gallery/gallery" name="gallery" template="gallery/album.phtml" >
+                <block type="core/template" name="search_form" as="search_form" >
+                    <action method="setTemplate" ifconfig="gallery/info/enabledsearch">
+                        <template>gallery/search/searchform.phtml</template>
+                    </action>
+                </block>
+            </block>
+        </reference>
+    </gallery_view_album>
+    <gallery_p_index>
+         <reference name="head">
+            <action method="setTemplate"><template>gallery/page/html/head.phtml</template></action>
+                <action method="addJs"><script>jquery/jquery.min.js</script></action>
+                <action method="addJs"><script>jquery/jquery.history.js</script></action>
+                <action method="addJs"><script>jquery/jquery_noconflict.js</script></action>
+                <action method="addItem"><type>skin_js</type><name>gallery/js/jquery.colorbox-min.js</name></action>
+                <action method="addCss"><stylesheet>gallery/css/gallery.css</stylesheet></action>
+                <action method="addCss"><stylesheet>gallery/css/colorbox.css</stylesheet></action>          
+                <action method="addItem"><type>skin_css</type><name>css/colorbox_ie6.css</name><params/><if>lt IE 8</if></action>
+        </reference>
+
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+        <reference name="content">
+            <block type="gallery/photo" name="gallery" template="gallery/photo.phtml" />
+        </reference>
+    </gallery_p_index>
+    
+    <gallery_upload_index>
+         <reference name="head">
+            <action method="setTemplate"><template>gallery/page/html/head.phtml</template></action>
+            <action method="addCss"><stylesheet>gallery/css/gallery.css</stylesheet></action>
+        </reference>
+        
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+        
+        <reference name="content">
+            <block type="gallery/upload" name="upload" template="gallery/upload.phtml" />
+        </reference>                
+
+    </gallery_upload_index>
+    
+    <!-- search  -->
+    <gallery_search_result>
+        <reference name="head">
+            <action method="setTemplate"><template>gallery/page/html/head.phtml</template></action>
+            <action method="addJs"><script>jquery/jquery.min.js</script></action>
+            <action method="addJs"><script>jquery/jquery_noconflict.js</script></action>
+            <action method="addItem"><type>skin_js</type><name>gallery/js/jquery.colorbox-min.js</name></action>
+            <action method="addCss"><stylesheet>gallery/css/gallery.css</stylesheet></action>
+            <action method="addCss"><stylesheet>gallery/css/colorbox.css</stylesheet></action>          
+            <action method="addItem"><type>skin_css</type><name>css/colorbox_ie6.css</name><params/><if>lt IE 8</if></action>
+        </reference>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+        <reference name="content">
+            <block type="gallery/search" name="gallery_search" template="gallery/search.phtml" >
+                <block type="core/template" name="search_form" as="search_form" >
+                    <action method="setTemplate" ifconfig="gallery/info/enabledsearch">
+                        <template>gallery/search/searchform.phtml</template>
+                    </action>
+                </block>
+            </block>
+        </reference>
+    </gallery_search_result>
+</layout> 

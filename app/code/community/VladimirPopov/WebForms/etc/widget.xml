@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<widgets>
+	
+	<webforms_widget type="webforms/widget" translate="name description" module="webforms">
+		<name>Web-forms</name>
+		<description type="desc">Adds web-form to a page</description>
+		<parameters>
+			<webform_id>
+				<label>Web-form</label>
+				<visible>1</visible>
+				<required>1</required>
+				<type>select</type>
+				<source_model>webforms/webforms</source_model>
+			</webform_id>
+			<template translate="label">
+				<label>Frontend Template</label>
+				<visible>1</visible>
+				<required>1</required>
+				<type>select</type>
+				<values>
+					<default translate="label">
+						<value>webforms/default.phtml</value>
+						<label>Default</label>
+					</default>
+				</values>
+			</template>
+		</parameters>
+	</webforms_widget>
+	
+</widgets>

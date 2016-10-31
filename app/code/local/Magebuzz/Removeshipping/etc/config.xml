@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Magebuzz_Removeshipping>
+            <version>0.1.0</version>
+        </Magebuzz_Removeshipping>
+    </modules>
+    <frontend>
+        <routers>
+            <removeshipping>
+                <use>standard</use>
+                <args>
+                    <module>Magebuzz_Removeshipping</module>
+                    <frontName>removeshipping</frontName>
+                </args>
+            </removeshipping>
+        </routers>
+<!--        <layout>
+            <updates>
+                <removeshipping>
+                    <file>removeshipping.xml</file>
+                </removeshipping>
+            </updates>
+        </layout>	-->
+    </frontend>	   
+    <global>	
+        <rewrite>
+            <magebuzz_removeshipping_checkout_onepage>
+                <from><![CDATA[#^/checkout/onepage/#]]></from>
+                <to>/removeshipping/checkout_onepage/</to>
+            </magebuzz_removeshipping_checkout_onepage>
+        </rewrite>
+    </global>
+</config>

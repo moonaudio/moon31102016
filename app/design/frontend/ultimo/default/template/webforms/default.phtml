@@ -1,0 +1,165 @@
+<?php
+/**
+ * Feel free to contact me via Facebook
+ * http://www.facebook.com/rebimol
+ *
+ *
+ * @author 		Vladimir Popov
+ * @copyright  	Copyright (c) 2011 Vladimir Popov
+ * @license    	http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+
+if(Mage::registry('show_form_name')){?>
+<div class="page-title">
+	<h1><?php echo Mage::registry('webform')->getName();?></h2>
+</div>
+<?php } ?>
+
+
+<?php
+if(Mage::registry('show_success')){?>
+<div class="std">
+	<?php echo Mage::registry('webform')->getSuccessText()?>
+</div>
+<?php } else {
+?>
+
+<div class="std">
+	<?php echo Mage::registry('webform')->getDescription();?>
+</div>
+
+<form action="<?php $this->getUrl()?>" method="post" name="webform_<?php echo Mage::registry('webform')->getId()?>" id="webform_<?php echo Mage::registry('webform')->getId()?>">
+
+	<input type="hidden" name="submitWebform_<?php echo Mage::registry('webform')->getId()?>" value="1"/>
+
+	<?php
+	foreach (Mage::registry('fields_to_fieldsets') as $fieldset){	
+	?>
+	
+	<div class="fieldset">
+		
+		<?php	if($fieldset['name']) { 	?>
+		<h2 class="legend"><?php echo $fieldset['name']?></h2>
+		<?php	}	?>
+		
+		<ul class="form-list">
+		<?php
+		$k=0;
+		$j=0;
+		$prev = false;
+		$fields_count =  count($fieldset['fields']);
+		foreach($fieldset['fields'] as $field)
+		{
+			
+			$size_class ="fields";
+			$field_class= "field";
+			if($field->getSize()=='wide'){
+				$size_class = "wide";
+				$field_class="";
+			}
+			
+		?>
+		<?php if ($j%2 ==0 || $field->getSize()=='wide' || $prev->getSize()=='wide') { $j=0;?>
+			<?php if ($k>1) {?></li><?php }?>
+			<li class="<?php echo $size_class?>">
+		<?php }?>
+				<div class="<?php echo $field_class?>">
+
+					<label for="field_<?php echo $field->getId()?>" <?php if($field->getRequired()){ ?>class="required"<?php }?>>
+
+						<?php if($field->getRequired()){ ?> 
+							<em>*</em>
+						<?php }?>
+
+						<?php echo $field->getName()?>
+
+					</label>
+					
+					<div class="input-box">
+						<?php	echo $field->toHtml();?>
+					</div>
+
+				</div>
+		<?php if($k == $fields_count-1){?>
+			</li>
+		<?php } ?>
+		<?php 
+			$k++; $j++;
+			$prev = $field;
+		}?>
+		</ul>
+		
+	</div>
+	
+	<?php
+	} // foreach 'fields_to_fieldsets'
+	?>
+    
+    <script> 
+      var RecaptchaOptions = { 
+        theme : 'custom', 
+        lang : 'en', 
+        custom_theme_widget: 'recaptcha_widget'
+      }; 
+    </script>
+    <div id="recaptcha_widget" class="group-select wide fieldset" style="display:none">
+        <h2 class="legend" style="background-image: none;">Recaptcha</h2>
+        <div style="margin-bottom: 10px; margin-top: 5px;"></div>
+        <div class="col2-set">
+            <div class="col-1" style="width: 310px; margin-right: 10px; background: transparent; border: 0px none;">
+                <div id="recaptcha_image" style="border: 1px solid #CCCCCC; margin-bottom: 10px;"></div> 
+                <div style="text-align: left;">
+                    <span class="recaptcha_only_if_image">Type the numbers or letters above</span>
+                    <span class="recaptcha_only_if_audio">Type words you hear:</span>
+                    <input type="text" id="recaptcha_response_field" name="recaptcha_response_field" class="input-text required-entry" />
+                </div>
+            </div>
+            <div class="col-2" style="float: left; width: 25px; background: transparent; border: 0px none;">
+                <div><a href="javascript:Recaptcha.reload()"><img src="https://www.moon-audio.com/skin/frontend/ultimo/default/images/fontis/refresh.png" title="Get a new challenge" alt="Get a new challenge"/></a></div>
+                <div class="recaptcha_only_if_image"><a href="javascript:Recaptcha.switch_type('audio')"><img src="https://www.moon-audio.com/skin/frontend/ultimo/default/images/fontis/sound.png" title="Get an audio challenge" alt="Get an audio challenge"/></a></div>
+                <div class="recaptcha_only_if_audio"><a href="javascript:Recaptcha.switch_type('image')"><img src="https://www.moon-audio.com/skin/frontend/ultimo/default/images/fontis/text.png" title="Get a visual challenge" alt="Get a visual challenge"/></a></div>
+                <div><a href="javascript:Recaptcha.showhelp()"><img src="https://www.moon-audio.com/skin/frontend/ultimo/default/images/fontis/help.png" title="Help" alt="Help"/></a></div>
+            </div>
+        </div>
+        <script type="text/javascript" src="https://www.google.com/recaptcha/api/challenge?k=6LfjpycTAAAAAOcXuhE8w-J9anwiJ0FzWATLhGL8"></script>
+
+	    <noscript>
+  		    <iframe src="https://www.google.com/recaptcha/api/noscript?k=6LfjpycTAAAAAOcXuhE8w-J9anwiJ0FzWATLhGL8" height="300" width="500" frameborder="0"></iframe><br/>
+  		    <textarea name="recaptcha_challenge_field" rows="3" cols="40"></textarea>
+  		    <input type="hidden" name="recaptcha_response_field" value="manual_challenge"/>
+	    </noscript>    </div>
+	
+	<!--<?php if(Mage::registry('use_captcha')) { ?>
+	<div class="fieldset">
+		<h2 class="legend">Captcha</h2>
+		<ul class="form-list">
+			<li class="fields">
+				<div class="field">
+					<?php echo $this->getCaptcha()->getHTML()?>
+				</div>
+			</li>
+		</ul>
+	</div>
+	<?php }?>-->
+	
+	<div class="buttons-set">
+		<p class="required"><?php echo $this->__('* Required Fields')?></p>
+		<button type="submit" class="button" title="<?php echo $this->__('submit')?>">
+			<span>
+				<span><?php echo $this->__('Submit')?></span>
+			</span>
+		</button>
+	</div>
+	
+
+</form>
+
+<script type="text/javascript">
+//<![CDATA[
+var webform_<?php echo Mage::registry('webform')->getId()?> = new VarienForm('webform_<?php echo Mage::registry('webform')->getId()?>',true);
+//]]>
+</script>
+
+<?php
+} // if(show_success)
+?>

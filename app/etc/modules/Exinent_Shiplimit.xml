@@ -1,0 +1,8 @@
+<config>
+    <modules>
+        <Exinent_Shiplimit>
+            <active>false</active>
+            <codePool>local</codePool>
+        </Exinent_Shiplimit>
+    </modules>
+</config>

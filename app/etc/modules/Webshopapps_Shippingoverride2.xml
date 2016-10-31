@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+		<Webshopapps_Shippingoverride2>
+			<active>true</active>
+			<codePool>community</codePool>
+			<depends>
+            <Webshopapps_Wsacommon/>
+            </depends>
+		</Webshopapps_Shippingoverride2>
+	</modules>
+	<global>
+	<models>
+		 <adminhtml>
+			<rewrite>
+				<system_config_backend_shipping_shippingoverride2>Webshopapps_Shippingoverride2_Model_System_Config_Backend_Shipping_Shippingoverride2</system_config_backend_shipping_shippingoverride2>
+			</rewrite>
+		  </adminhtml>
+	</models>
+	</global>
+</config>

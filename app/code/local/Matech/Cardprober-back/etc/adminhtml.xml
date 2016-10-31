@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+	<config>
+		<acl>
+			<resources>
+				<admin>
+					<children>
+						<system>
+							<children>
+								<config>
+									<children>
+										<efraud_cardprober_section translate="title" module="cardprober">
+											<title>eFraud Security Setting Section</title>
+											<sort_order>0</sort_order>
+										</efraud_cardprober_section>
+									</children>
+								</config>
+							</children>
+						</system>
+					</children>
+				</admin>
+			</resources>
+		</acl>
+	</config>

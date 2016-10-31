@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+   <modules>
+      <Exinent_Shiplimit>
+         <version>0.1.0</version>
+      </Exinent_Shiplimit>
+   </modules>
+   
+   <global>
+      <models>
+         <checkout>
+            <rewrite>
+               <type_onepage>Exinent_Shiplimit_Model_Checkout_Type_Onepage</type_onepage>
+            </rewrite>
+         </checkout>
+      </models>
+      <helpers>
+         <exinent_shiplimit>
+            <class>Exinent_Shiplimit_Helper</class>
+         </exinent_shiplimit>
+      </helpers>
+      <resources>
+         <exinent_shiplimit_setup>
+            <setup>
+               <module>Exinent_Shiplimit</module>
+               <class>Mage_Catalog_Model_Resource_Eav_Mysql4_Setup</class>
+            </setup>
+         </exinent_shiplimit_setup>
+      </resources>
+   </global>
+</config>
+

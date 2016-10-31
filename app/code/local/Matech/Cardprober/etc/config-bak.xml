@@ -1,0 +1,195 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Matech_Cardprober>
+            <version>1.0.0</version>
+        </Matech_Cardprober>
+    </modules>
+    <frontend>
+        <routers>
+            <cardprober>
+                <use>standard</use>
+                <args>
+                    <module>Matech_Cardprober</module>
+                    <frontName>cardprober</frontName>
+                </args>
+            </cardprober>
+        </routers>
+    </frontend>
+    <global>
+        
+        <blocks>
+            <cardprober>
+                <class>Matech_Cardprober_Block</class>
+            </cardprober>
+            <adminhtml>
+                <rewrite>
+               <sales_order_view>Matech_Cardprober_Block_Adminhtml_Sales_Order_View</sales_order_view>
+                   <!--  <sales_order_grid>Matech_Cardprober_Block_Adminhtml_Sales_Order_Grid</sales_order_grid> -->
+                </rewrite>
+            </adminhtml>
+			
+           
+        </blocks>
+        <models>
+            <cardprober>
+                <class>Matech_Cardprober_Model</class>
+                <resourceModel>cardprober_mysql4</resourceModel>
+            </cardprober>
+             <sales>
+                <rewrite>
+                    <order>Matech_Cardprober_Model_Sales_Order</order>
+                </rewrite>
+            </sales> 
+			<payment>
+				<rewrite>
+					<method_cc>Matech_Cardprober_Model_Payment_Method_Cc</method_cc>
+				</rewrite>
+			</payment>
+            <cardprober_mysql4>
+                <class>Matech_Cardprober_Model_Resource</class>
+                <entities>
+                    <cardprober>
+                        <table>matech_cardprober_cardprober</table>
+                    </cardprober>
+                </entities>
+            </cardprober_mysql4>
+        </models>
+        <resources>
+            <orderstate_setup>
+                <setup>
+                    <module>Matech_Cardprober</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </orderstate_setup>
+            <orderstate_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </orderstate_write>
+            <orderstate_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </orderstate_read>
+        </resources> 
+        <sales>
+            <order>
+                <statuses>
+                    
+                    <efraud_pending translate="label">
+                        <label>eFraud Pending</label>
+                    </efraud_pending>
+                    <efraud_awaiting_response translate="label">
+                        <label>eFraud Awaiting Response</label>
+                    </efraud_awaiting_response>
+                    <efraud_removed_from_queue translate="label">
+                        <label>eFraud Removed from Queue</label>
+                    </efraud_removed_from_queue>
+                    <efraud_scoreOnly translate="label">
+                        <label>eFraud ScoreOnly</label>
+                    </efraud_scoreOnly>
+                    <efraud_notinsured translate="label">
+                        <label>eFraud  NotInsured</label>
+                    </efraud_notinsured>
+                    <efraud_allowed translate="label">
+                        <label>eFraud ALLOWED</label>
+                    </efraud_allowed>
+                     <efraud_rejected translate="label">
+                        <label>eFraud Rejected</label>
+                    </efraud_rejected>
+                    <efraud_fraud translate="label">
+                        <label>eFraud FRAUD</label>
+                    </efraud_fraud>
+                    <efraud_fraud_missed translate="label">
+                        <label>eFraud FRAUD-Missed</label>
+                    </efraud_fraud_missed>
+                    <efraud_cancelled translate="label">
+                        <label>eFraud Cancelled</label>
+                    </efraud_cancelled>
+
+                </statuses>
+                <states>
+                    <efraud_pending translate="label">
+                        <label>eFraud Pending</label>
+                         <statuses>
+                            <efraud_pending default="1"/>
+                        </statuses>
+                    </efraud_pending>
+                    <efraud_awaiting_response translate="label">
+                        <label>eFraud Awaiting Response</label>
+                         <statuses>
+                            <efraud_awaiting_response default="1"/>
+                        </statuses>
+                    </efraud_awaiting_response>
+                    <efraud_removed_from_queue translate="label">
+                        <label>eFraud Removed from Queue</label>
+                         <statuses>
+                            <efraud_removed_from_queue default="1"/>
+                        </statuses>
+                    </efraud_removed_from_queue>
+                    <efraud_scoreOnly translate="label">
+                        <label>eFraud ScoreOnly</label>
+                         <statuses>
+                            <efraud_scoreOnly default="1"/>
+                        </statuses>
+                    </efraud_scoreOnly>
+                    <efraud_notinsured translate="label">
+                        <label>eFraud  NotInsured</label>
+                         <statuses>
+                            <efraud_notinsured default="1"/>
+                        </statuses>
+                    </efraud_notinsured>
+                    <efraud_allowed translate="label">
+                        <label>eFraud ALLOWED</label>
+                         <statuses>
+                            <efraud_allowed default="1"/>
+                        </statuses>
+                    </efraud_allowed>
+                     <efraud_rejected translate="label">
+                        <label>eFraud Rejected</label>
+                         <statuses>
+                            <efraud_rejected default="1"/>
+                        </statuses>
+                    </efraud_rejected>
+                    <efraud_fraud translate="label">
+                        <label>eFraud FRAUD</label>
+                         <statuses>
+                            <efraud_fraud default="1"/>
+                        </statuses>
+                    </efraud_fraud>
+                    <efraud_fraud_missed translate="label">
+                        <label>eFraud FRAUD-Missed</label>
+                         <statuses>
+                            <efraud_fraud_missed default="1"/>
+                        </statuses>
+                    </efraud_fraud_missed>
+                    <efraud_cancelled translate="label">
+                        <label>eFraud Cancelled</label>
+                         <statuses>
+                            <efraud_cancelled default="1"/>
+                        </statuses>
+                    </efraud_cancelled>
+                </states>
+            </order>
+        </sales>
+        <helpers>
+            <cardprober>
+                <class>Matech_Cardprober_Helper</class>
+            </cardprober>
+        </helpers>
+    </global>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <matech_cardprober before="Mage_Adminhtml">Matech_Cardprober_Adminhtml</matech_cardprober>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+</config> 
