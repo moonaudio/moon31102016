@@ -1,0 +1,11 @@
+/*
+    Fix style ie6    
+*/
+
+		#cboxClose{	background:url(http://d1p66qganyivs8.cloudfront.net/skin/frontend/moon-audio/default/images/colorbox/close1.gif) no-repeat;}
+		#cboxClose.hover{background:url(http://d1p66qganyivs8.cloudfront.net/skin/frontend/moon-audio/default/images/colorbox/close2.gif) no-repeat;}
+		#cboxNext{	background:url(http://d1p66qganyivs8.cloudfront.net/skin/frontend/moon-audio/default/images/colorbox/next1.gif) no-repeat;}
+		#cboxNext.hover{background:url(http://d1p66qganyivs8.cloudfront.net/skin/frontend/moon-audio/default/images/colorbox/next2.gif) no-repeat;}
+		#cboxPrevious{	background:url(http://d1p66qganyivs8.cloudfront.net/skin/frontend/moon-audio/default/images/colorbox/previous1.gif) no-repeat;}
+		#cboxPrevious.hover{background:url(http://d1p66qganyivs8.cloudfront.net/skin/frontend/moon-audio/default/images/colorbox/previous2.gif) no-repeat;}
+		
