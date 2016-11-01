@@ -1,0 +1,86 @@
+/**
+ * This file is a container for custom CSS. You can use it to override the default styles of the theme.
+ *
+ * 1. Copy the file "SAMPLE.custom.css" and rename it to "custom.css".
+ *    Otherwise this file will not be loded by Magento.
+ * 2. Enable it in the admin panel.
+ * 3. Uncomment slected sample styles or add your own CSS to override the default styles of the theme.
+ *
+ * Please refer to the user guide for more details.
+ *
+ */
+
+
+
+/* Stock indicator on product page: icon color
+-------------------------------------------------------------- */
+
+/*
+.availability-only .ic { color: green; }
+*/
+
+
+
+/* Product counter in the mini cart drop-down
+-------------------------------------------------------------- */
+
+/*
+.header .skip-link .count {
+	background-color: yellow;
+	color: white;
+}
+*/
+
+
+/*.footer-primary .section {
+  background-color: lightsteelblue;
+
+}*/
+.bhtopleft {
+	max-width: 375px;
+	max-height: 38px;
+	padding: 5px;
+}
+.bhtopleft img{
+	float: left;
+}
+.bhtopleft p{
+	font-size: 10px;
+	line-height: 19px;
+	float: left;
+	padding-left: 10px;
+	color: #037cae;
+}
+.bhtopleft a{
+	text-decoration: underline;
+}
+.bhtopleft p span{
+	font-size: 12px;
+	color: #000;
+	float: left;
+	line-height: 13px;
+	padding-top: 4px;
+	margin-bottom: 0px;
+}
+.newusermenu {
+	padding-top: 5px;
+}
+.newusermenu a{
+	color: #000;
+}
+.newusermenu a:hover{
+	color: #037cae;
+}
+
+.wrapper {
+	background-color: #e9e9e9;
+}
+
+.new-yotpo {
+	width: 325px;
+}
+
+.review-button {
+	float: right;
+	margin-top: -24px;
+}
